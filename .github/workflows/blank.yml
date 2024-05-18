@@ -17,6 +17,10 @@ jobs:
       - name: Install smth
         run: |
           make -f makefile install
+      
+      - name: Build application
+        run: |
+          make -f makefile run
           
       - name: Test smth
         run: |
