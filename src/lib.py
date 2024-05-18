@@ -74,6 +74,12 @@ def get_valid_count():
         except ValueError:
             print("Ошибка: введите целое число. Попробуйте снова.")
 
+def save_passwords_to_file(passwords):
+    filename = input("Введите имя файла для сохранения паролей: ")
+    with open(filename + '.txt', 'w') as file:
+        for password in passwords:
+            file.write(password + '\n')
+    print(f"Пароли сохранены в файл {filename}")
 
 def main_menu():
 
@@ -92,6 +98,10 @@ def main_menu():
             print("\nСгенерированные пароли:")
             for word in random_words:
                 print(word)
+
+            save_choice = input("Хотите сохранить пароли в файл? (да/нет): ")
+            if save_choice.lower() in ['да', 'yes', 'д', 'ye', 'y']:
+                save_passwords_to_file(random_words)
             break
 
         elif choice == '2':
@@ -103,6 +113,10 @@ def main_menu():
             print("\nСгенерированные пароли на основе ключевого слова:")
             for password in keyword_passwords:
                 print(password)
+            
+            save_choice = input("Хотите сохранить пароли в файл? (да/нет): ")
+            if save_choice.lower() in ['да', 'yes', 'д', 'ye', 'y']:
+                save_passwords_to_file(keyword_passwords)
             break
 
         else:
