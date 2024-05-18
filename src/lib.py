@@ -10,7 +10,7 @@ def generate_random_word(length):
     return random_word
 
 
-def generate_keyword_based_password(keyword, length):
+def generate_keyword_based_password(keyword: str, length: int):
 
     all_characters = string.ascii_letters + string.digits + "-_~!@#$%^&*()+`'\";:<>/\\|"
     total_random_chars = length - len(keyword)
@@ -18,7 +18,11 @@ def generate_keyword_based_password(keyword, length):
     if total_random_chars < 0:
         raise ValueError("The keyword length is too long for the specified password length.")
 
-    random_choice = random.choice(['before', 'after', 'both'])
+    if (2 * len(keyword) < length):
+        random_choice = random.choice(['before', 'after', 'both'])
+        
+    else:
+        random_choice = random.choice(['before', 'after'])
 
     if random_choice == 'before':
         random_chars = ''.join(random.choice(all_characters) for _ in range(total_random_chars))
@@ -34,7 +38,7 @@ def generate_keyword_based_password(keyword, length):
             raise ValueError("The keyword length is too long for double the password length.")
         random_prefix = ''.join(random.choice(all_characters) for _ in range(total_random_chars // 2))
         random_suffix = ''.join(random.choice(all_characters) for _ in range(total_random_chars - len(random_prefix)))
-        return random_prefix + keyword + random_suffix + keyword
+        return keyword + random_prefix + random_suffix + keyword
 
 
 def generate_multiple_random_words(length, count):
