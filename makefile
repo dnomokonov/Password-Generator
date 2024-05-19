@@ -7,4 +7,4 @@ install:
 	pip install --upgrade pip
 
 test:
-	python3 -m unittest
+	python3 -m unittest discover tests
