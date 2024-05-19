@@ -1,5 +1,4 @@
 APP = src/
-TESTS = tests/
 
 run:
 	python3 ${APP}genpassword.py
@@ -8,4 +7,4 @@ install:
 	pip install --upgrade pip
 
 test:
-	python3 ${TESTS}test.py
+	python3 -m unittest discover tests

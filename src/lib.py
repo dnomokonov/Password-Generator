@@ -84,8 +84,7 @@ def get_valid_count():
         except EOFError:
             return 5
 
-def save_passwords_to_file(passwords):
-    filename = input("Enter the file name to save the passwords: ")
+def save_passwords_to_file(passwords: list[str], filename: str):
     with open(filename + '.txt', 'w') as file:
         for password in passwords:
             file.write(password + '\n')
@@ -128,7 +127,8 @@ def main_menu():
             try:
                 save_choice = input("\nDo you want to save passwords to a file? (yes/no): ")
                 if save_choice.lower() in ['да', 'yes', 'д', 'ye', 'y']:
-                    save_passwords_to_file(random_words)
+                    filename = input("Enter the file name to save the passwords: ")
+                    save_passwords_to_file(random_words, filename)
             except EOFError:
                 pass
             break
@@ -145,7 +145,8 @@ def main_menu():
             
             save_choice = input("\nDo you want to save passwords to a file? (yes/no): ")
             if save_choice.lower() in ['да', 'yes', 'д', 'ye', 'y']:
-                save_passwords_to_file(keyword_passwords)
+                filename = input("Enter the file name to save the passwords: ")
+                save_passwords_to_file(keyword_passwords, filename)
             break
 
         else:
