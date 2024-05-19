@@ -64,6 +64,9 @@ def get_valid_length(min_length=3):
         except ValueError:
             print("Error: Enter an integer. Try again.")
 
+        except EOFError:
+            return 8
+
 
 def get_valid_count():
 
@@ -77,6 +80,9 @@ def get_valid_count():
 
         except ValueError:
             print("Error: Enter an integer. Try again.")
+
+        except EOFError:
+            return 5
 
 def save_passwords_to_file(passwords):
     filename = input("Enter the file name to save the passwords: ")
@@ -105,7 +111,10 @@ def main_menu():
     print("└" + "─" * (box_width - 2) + "┘")
 
     while True:
-        choice = input("Input: ")
+        try:
+            choice = input("Input: ")
+        except EOFError:
+            choice = '1'
 
         if choice == '1':
             length = get_valid_length()
@@ -115,10 +124,13 @@ def main_menu():
             print("\nGenerated passwords:")
             for word in random_words:
                 print(word)
-
-            save_choice = input("\nDo you want to save passwords to a file? (yes/no): ")
-            if save_choice.lower() in ['да', 'yes', 'д', 'ye', 'y']:
-                save_passwords_to_file(random_words)
+                
+            try:
+                save_choice = input("\nDo you want to save passwords to a file? (yes/no): ")
+                if save_choice.lower() in ['да', 'yes', 'д', 'ye', 'y']:
+                    save_passwords_to_file(random_words)
+            except EOFError:
+                pass
             break
 
         elif choice == '2':
