@@ -17,10 +17,6 @@ jobs:
       - name: Upgrade pip
         run: |
           make -f makefile install
-      
-      - name: Build application
-        run: |
-          make -f makefile run
           
       - name: Run tests
         run: |
